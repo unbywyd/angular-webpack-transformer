@@ -7,6 +7,7 @@ export enum RuleTestTypes {
   Svg = '\\.(?:svg)$',
   Html = '\\.(?:html)$'
 } 
+
 export type RuleTestType = RuleTestTypes & RegExp;
 
 export type WebpackConfigTransformer = (

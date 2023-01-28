@@ -26,7 +26,7 @@ const {
 
 module.exports = async function (config, use) {
     use(async config => {
-        return rules.modifyOrAddLoader([types.RuleTestType.Sass, types.RuleTestType.Scss, types.RuleTestType.Css], 'postcss-loader', (loader, rule) => {
+        return rules.modifyOrAddLoader([types.RuleTestTypes.Sass, types.RuleTestTypes.Scss, types.RuleTestTypes.Css], 'postcss-loader', (loader, rule) => {
             if (loader) {
                 return "postcss-loader";
             } else {
@@ -37,7 +37,7 @@ module.exports = async function (config, use) {
         }, config);
     });
     use(async config => {
-        return rules.modifyOrAddLoader([types.RuleTestType.Sass, types.RuleTestType.Scss], 'sass-loader', (sassLoader, rule) => {
+        return rules.modifyOrAddLoader([types.RuleTestTypes.Sass, types.RuleTestTypes.Scss], 'sass-loader', (sassLoader, rule) => {
             if (sassLoader) {
                 sassLoader.options.additionalData = integrator({
                     themeName: 'default',
@@ -110,7 +110,7 @@ const { types, rules } = require('angular-webpack-transformer');
 
 module.exports = async function (config, use) {
     use(async config => {
-        return rules.modifyOrAddLoader([types.RuleTestType.Sass, types.RuleTestType.Scss, types.RuleTestType.Css], 'postcss-loader', (loader, rule) => {
+        return rules.modifyOrAddLoader([types.RuleTestTypes.Sass, types.RuleTestTypes.Scss, types.RuleTestTypes.Css], 'postcss-loader', (loader, rule) => {
             if (loader) {
                 return "postcss-loader";
             } else {
