@@ -1,4 +1,4 @@
-#angular-webpack-transformer 
+# angular-webpack-transformer 
 
 The `angular-webpack-transformer` package is a plugin that allows for asynchronous changes to the webpack configuration of an Angular project. It is dependent on the [ngx-build-plus](https://www.npmjs.com/package/ngx-build-plus) package and its documentation should be consulted for further information.
 
@@ -11,8 +11,9 @@ The `angular-webpack-transformer` package is a plugin that allows for asynchrono
 
 To get started, `ngx-build-plus` must be installed and configured, followed by the installation and configuration of `angular-webpack-transformer`. After that, create a file named `webpack.transformer.js` in the root of your project.
 
-The `webpack.transformer.js` file should export a function that utilizes the use function provided by `angular-webpack-transformer` to make changes to the webpack config. The example file provided below adds a postcss-loader and configures the sass-loader by adding the `additionalData` option:
+The `webpack.transformer.js` file should export a function that utilizes the use function provided by `angular-webpack-transformer` to make changes to the `webpack config`. 
 
+The **example** file provided below adds a **postcss-loader** and configures the **sass-loader** by adding the `additionalData` option:
 
 ```js
 const { types, rules } = require('angular-webpack-transformer');
@@ -55,7 +56,6 @@ module.exports = async function (config, use) {
 and finally use --plugin option `ng serve --plugin angular-webpack-transformer` or `ng build --plugin angular-webpack-transformer`, example of `packages.json`:
 
 ```json
-...
 "scripts": {
     "start": "ng serve --plugin angular-webpack-transformer --extra-webpack-config webpack.partial.js -o"
 }

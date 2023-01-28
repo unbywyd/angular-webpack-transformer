@@ -1,8 +1,8 @@
 {
   "name": "angular-webpack-transformer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "This plugin allows you to asynchronously change the configuration of the angular webpack",
-  "main": "output/src/index.js",
+  "main": "output/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/unbywyd/angular-webpack-transformer"
