@@ -3,8 +3,8 @@ export declare enum RuleTestTypes {
     Css = "\\.(?:css)$",
     Scss = "\\.(?:scss)$",
     Sass = "\\.(?:sass)$",
-    Svg = "\\.(?:svg)$",
-    Html = "\\.(?:html)$"
+    Svg = "\\.svg$",
+    Html = "\\.html$"
 }
 export declare type RuleTestType = RuleTestTypes & RegExp;
 export declare type WebpackConfigTransformer = (config: webpack.Configuration) => webpack.Configuration | Promise<webpack.Configuration>;

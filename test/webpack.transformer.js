@@ -32,4 +32,18 @@ module.exports = async function (config, use) {
             }
         }, config);
     });
+
+    use(async config => {
+        return rules.modifyOrAddLoader([types.RuleTestTypes.Svg], 'svg-sprite-loader', (loader, rule) => {
+            if (!loader) {
+                rule.push({
+                    loader: 'svg-sprite-loader',
+                    options: {
+                        symbolId: filePath => "app-" + path.basename(filePath, path.extname(filePath))
+                    }
+                });
+                rule.push('svgo-loader');
+            }
+        }, config);
+    });
 }

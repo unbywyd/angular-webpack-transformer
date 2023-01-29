@@ -6,7 +6,7 @@ var RuleTestTypes;
     RuleTestTypes["Css"] = "\\.(?:css)$";
     RuleTestTypes["Scss"] = "\\.(?:scss)$";
     RuleTestTypes["Sass"] = "\\.(?:sass)$";
-    RuleTestTypes["Svg"] = "\\.(?:svg)$";
-    RuleTestTypes["Html"] = "\\.(?:html)$";
+    RuleTestTypes["Svg"] = "\\.svg$";
+    RuleTestTypes["Html"] = "\\.html$";
 })(RuleTestTypes = exports.RuleTestTypes || (exports.RuleTestTypes = {}));
 //# sourceMappingURL=types.js.map

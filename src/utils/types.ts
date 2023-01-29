@@ -4,8 +4,8 @@ export enum RuleTestTypes {
   Css = '\\.(?:css)$',
   Scss = '\\.(?:scss)$',
   Sass = '\\.(?:sass)$',
-  Svg = '\\.(?:svg)$',
-  Html = '\\.(?:html)$'
+  Svg = '\\.svg$',
+  Html = '\\.html$'
 } 
 
 export type RuleTestType = RuleTestTypes & RegExp;

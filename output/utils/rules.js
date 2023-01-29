@@ -11,8 +11,8 @@ const find = (ruleType, config) => {
     }
     let rules = config.module.rules;
     return rules.filter((rule) => {
-        return ('object' == typeof rule &&
-            rule?.test?.toString() == new RegExp(ruleType, 'i').toString());
+        return ("object" == typeof rule &&
+            rule?.test?.toString() == new RegExp(ruleType, "i").toString());
     });
 };
 exports.find = find;
@@ -23,21 +23,36 @@ const modifyOrAddLoader = (ruleTypes = [], loaderName, callback, config) => {
     }
     const rules = [];
     for (let ruleType of ruleTypes) {
-        rules.push(...(0, exports.find)(ruleType, config));
-    }
-    if (!rules.length) {
-        return;
+        let found = (0, exports.find)(ruleType, config);
+        if (!found.length) {
+            let rule = {
+                test: RegExp(ruleType, "i"),
+                rules: [
+                    {
+                        use: [],
+                    },
+                ],
+            };
+            config.module?.rules?.push(rule);
+            rules.push(rule);
+        }
+        else {
+            rules.push(...found);
+        }
     }
     for (let ruleTest of rules) {
+        if (!ruleTest.rules) {
+            ruleTest.rules = [];
+        }
         for (let rule of ruleTest.rules) {
-            if ('object' == typeof rule && Array.isArray(rule?.use)) {
+            if ("object" == typeof rule && Array.isArray(rule?.use)) {
                 const loaders = rule?.use?.filter((use) => {
-                    return (('string' == typeof use &&
+                    return (("string" == typeof use &&
                         use
                             .trim()
                             .toLocaleLowerCase()
                             .includes(loaderName.trim().toLocaleLowerCase())) ||
-                        ('object' == typeof use &&
+                        ("object" == typeof use &&
                             use.loader
                                 ?.trim()
                                 .toLocaleLowerCase()
@@ -46,9 +61,9 @@ const modifyOrAddLoader = (ruleTypes = [], loaderName, callback, config) => {
                 if (loaders.length) {
                     for (let loader of loaders) {
                         let indexOf = rule?.use.indexOf(loader);
-                        let _loader = 'string' == loader
+                        let _loader = "string" == loader
                             ? {
-                                loader: 'loaderName',
+                                loader: "loaderName",
                                 options: {},
                             }
                             : loader;

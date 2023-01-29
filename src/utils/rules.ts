@@ -1,5 +1,5 @@
-import * as webpack from 'webpack';
-import { PreloaderHandlerCallback, RuleTestType } from './types';
+import * as webpack from "webpack";
+import { PreloaderHandlerCallback, RuleTestType } from "./types";
 
 export const find = (
   ruleType: RuleTestType,
@@ -18,8 +18,8 @@ export const find = (
 
   return rules.filter((rule) => {
     return (
-      'object' == typeof rule &&
-      rule?.test?.toString() == new RegExp(ruleType, 'i').toString()
+      "object" == typeof rule &&
+      rule?.test?.toString() == new RegExp(ruleType, "i").toString()
     );
   });
 };
@@ -37,24 +37,38 @@ export const modifyOrAddLoader = (
     return;
   }
   const rules: Array<webpack.RuleSetRule> = [];
-
   for (let ruleType of ruleTypes) {
-    rules.push(...find(ruleType, config));
+    let found = find(ruleType, config);
+    if (!found.length) {
+      let rule = {
+        test: RegExp(ruleType, "i"),
+        rules: [
+          {
+            use: [],
+          },
+        ],
+      };
+      config.module?.rules?.push(rule);
+      rules.push(rule);
+    } else {
+      rules.push(...found);
+    }
   }
-  if (!rules.length) {
-    return;
-  }
+
   for (let ruleTest of rules) {
+    if (!ruleTest.rules) {
+      ruleTest.rules = [];
+    }
     for (let rule of ruleTest.rules as Array<webpack.RuleSetRule>) {
-      if ('object' == typeof rule && Array.isArray(rule?.use)) {
+      if ("object" == typeof rule && Array.isArray(rule?.use)) {
         const loaders = rule?.use?.filter((use) => {
           return (
-            ('string' == typeof use &&
+            ("string" == typeof use &&
               use
                 .trim()
                 .toLocaleLowerCase()
                 .includes(loaderName.trim().toLocaleLowerCase())) ||
-            ('object' == typeof use &&
+            ("object" == typeof use &&
               use.loader
                 ?.trim()
                 .toLocaleLowerCase()
@@ -65,9 +79,9 @@ export const modifyOrAddLoader = (
           for (let loader of loaders) {
             let indexOf = rule?.use.indexOf(loader);
             let _loader: webpack.RuleSetUseItem =
-              'string' == loader
+              "string" == loader
                 ? {
-                    loader: 'loaderName',
+                    loader: "loaderName",
                     options: {},
                   }
                 : loader;
