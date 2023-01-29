@@ -1,6 +1,6 @@
 {
   "name": "angular-webpack-transformer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This plugin allows you to asynchronously change the configuration of the angular webpack",
   "main": "output/index.js",
   "repository": {
@@ -8,10 +8,17 @@
     "url": "https://github.com/unbywyd/angular-webpack-transformer"
   },
   "keywords": [
+    "angular",
+    "webpack",
     "postcss",
+    "sass-loader",
     "rtl",
-    "logical",
-    "properties"
+    "svg",
+    "svgo-loader",
+    "svg-sprite-loader",
+    "sass-loader",
+    "additionalData",
+    "postcss-loader"
   ],
   "devDependencies": {
     "ts-loader": "^9.4.2",
